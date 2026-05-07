@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@textlint/ast-node-types": "^12.2.2",
-        "@types/node": "^22.10.3",
+        "@types/node": "^25.6.0",
         "orga": "2.4.9",
         "structured-source": "^4.0.0"
     },
