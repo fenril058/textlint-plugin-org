@@ -23,7 +23,7 @@
     "scripts": {
         "build": "tsc -b && tsc -b tsconfig.json",
         "prepublish": "npm run --if-present build",
-        "test": "mocha \"test/**/*.{js,ts}\"",
+        "test": "tsx --test",
         "watch": "tsc -b --watch",
         "lint": "npx eslint src/**/*.ts"
     },
@@ -44,10 +44,10 @@
         "@typescript-eslint/parser": "^5.2.0",
         "eslint": "^8.1.0",
         "eslint-plugin-import": "^2.23.4",
-        "mocha": "^11.0.1",
         "textlint-rule-max-comma": "^4.0.0",
         "ts-node": "^10.0.0",
         "ts-node-test-register": "^10.0.0",
+        "tsx": "^4.21.0",
         "typescript": "^5.0.2"
     }
 }

@@ -8,7 +8,7 @@ import { TextlintKernel } from '@textlint/kernel';
 import { parse } from '../src/org-to-ast';
 import OrgPlugin from '../src/index';
 
-const Syntax = require('../src/mapping').nodeTypes;
+import { nodeTypes as Syntax } from '../src/mapping';
 
 test('parse should return AST', () => {
   const result = parse(`
