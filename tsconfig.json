@@ -1,17 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "es2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [ "ES2023" ],
     "outDir": "lib",
-    "esModuleInterop": true
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+
+    "resolveJsonModule": true   // for compatibility
   },
   "include": [
     "src/**/*.ts",
-    ".eslintrc.js"
+    "eslint.config.mjs"
   ],
   "exclude": [
-    ".git",
     "node_modules",
-    "dist"
+    "dist",
+    "lib"
   ]
 }
