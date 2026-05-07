@@ -16,11 +16,11 @@ export const nodeTypes = {
   footnote: 'FootnoteReference',
 };
 
-export type LineColumn = {
+export interface LineColumn {
   line: number;
   column: number;
 }
-export type Loc = {
+export interface Loc {
   start: LineColumn;
   end: LineColumn;
 }
