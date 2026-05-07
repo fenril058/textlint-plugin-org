@@ -37,8 +37,6 @@
     "devDependencies": {
         "@textlint/ast-tester": "^14.0.3",
         "@textlint/kernel": "^14.0.3",
-        "@types/jest": "^29.0.0",
-        "@types/power-assert": "^1.5.3",
         "@types/traverse": "^0.6.32",
         "@typescript-eslint/eslint-plugin": "^5.2.0",
         "@typescript-eslint/parser": "^5.2.0",
