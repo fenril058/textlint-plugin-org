@@ -1,20 +1,18 @@
 import { parse as orga } from 'orga';
 import traverse from 'traverse';
 import { StructuredSource } from 'structured-source';
-import { nodeTypes, Loc } from './mapping';
-import { TxtNode } from "@textlint/ast-node-types";
+import { nodeTypes, OrgNode } from './mapping';
 
-export function parse(org: string): any { // eslint-disable-line
-  // TODO: Define return value type.
+export function parse(org: string): OrgNode {
   const ast = orga(org);
   const src = new StructuredSource(org);
-  traverse(ast).forEach(function (node: TxtNode) {
+  traverse(ast).forEach(function (node: OrgNode) {
     if (this.notLeaf) {
       delete node.parent;
 
       // AST node has type and position
       if (node.type && node.position) {
-        node.type = nodeTypes[node.type as keyof typeof nodeTypes];
+        node.type = nodeTypes[node.type];
       }
 
       if (typeof node.type === 'undefined') {
@@ -23,8 +21,7 @@ export function parse(org: string): any { // eslint-disable-line
 
       // map `range`, `loc` and `raw` to node
       if (typeof node.position === 'object') {
-        const position = node.position as Loc;
-        // Maybe prefer `const { position } = node;`, pure functional. But can't resolve eslint caution...
+        const position = node.position;
 
         // TxtNode's line start with 1
         // TxtNode's column start with 0
@@ -46,7 +43,7 @@ export function parse(org: string): any { // eslint-disable-line
 
       // map `url` to Link node
       if (node.type === 'Link' && typeof node.value !== 'undefined') {
-        node.url = node.value as string;
+        node.url = node.value;
       }
     }
   });

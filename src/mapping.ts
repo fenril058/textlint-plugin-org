@@ -1,6 +1,6 @@
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 
-export const nodeTypes = {
+export const nodeTypes: Record<string, string> = {
   document: ASTNodeTypes.Document,
   paragraph: ASTNodeTypes.Paragraph,
   list: ASTNodeTypes.List,
@@ -16,11 +16,22 @@ export const nodeTypes = {
   footnote: 'FootnoteReference',
 };
 
-export interface LineColumn {
+interface LineColumn {
   line: number;
   column: number;
 }
-export interface Loc {
+interface Loc {
   start: LineColumn;
   end: LineColumn;
 }
+
+export interface OrgNode {
+  type?: string;
+  position?: Loc;
+  value?: string;
+  url?: string;
+  parent?: unknown;
+  loc?: unknown;
+  range?: readonly [number, number];
+  raw?: string;
+};
