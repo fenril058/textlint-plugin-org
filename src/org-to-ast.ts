@@ -1,7 +1,7 @@
 import { parse as orga } from 'orga';
 import traverse from 'traverse';
 import { StructuredSource } from 'structured-source';
-import { nodeTypes, OrgNode } from './mapping';
+import { nodeTypes, textStyleNodeTypes, OrgNode } from './mapping';
 
 export function parse(org: string): OrgNode {
   const ast = orga(org);
@@ -10,12 +10,26 @@ export function parse(org: string): OrgNode {
     if (this.notLeaf) {
       delete node.parent;
 
-      // AST node has type and position
-      if (node.type && node.position) {
-        node.type = nodeTypes[node.type];
+      // orga v4 emits emptyLine/newline tokens throughout the tree; strip them
+      if (node.type === 'emptyLine' || node.type === 'newline') {
+        this.remove();
+        return;
       }
 
-      if (typeof node.type === 'undefined') {
+      // AST node has type and position
+      if (node.type && node.position) {
+        if (node.type === 'text') {
+          // orga v4: inline text uses a single 'text' type with an optional style
+          node.type = (node.style !== undefined ? textStyleNodeTypes[node.style] : undefined) ?? nodeTypes.text;
+        } else {
+          node.type = nodeTypes[node.type];
+        }
+      }
+
+      // Only tag nodes that carry a position — bare sub-objects (planning.timestamp,
+      // data hashes, etc.) must not get a type string or @textlint/ast-traverse
+      // will try to traverse them and fail on duplicate `parent` defineProperty.
+      if (typeof node.type === 'undefined' && node.position !== undefined) {
         node.type = 'UNKNOWN';
       }
 
@@ -41,9 +55,9 @@ export function parse(org: string): OrgNode {
         });
       }
 
-      // map `url` to Link node
-      if (node.type === 'Link' && typeof node.value !== 'undefined') {
-        node.url = node.value;
+      // map `url` to Link node (orga v4: URL is in node.path.value)
+      if (node.type === 'Link' && node.path !== undefined) {
+        node.url = node.path.value;
       }
     }
   });

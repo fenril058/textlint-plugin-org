@@ -8,12 +8,18 @@ export const nodeTypes: Record<string, string> = {
   headline: ASTNodeTypes.Header,
   block: ASTNodeTypes.CodeBlock,
   hr: ASTNodeTypes.HorizontalRule,
-  // inline block
-  'text.plain': ASTNodeTypes.Str,
-  'text.code': ASTNodeTypes.Code,
-  'text.bold': ASTNodeTypes.Emphasis,
+  text: ASTNodeTypes.Str,
   link: ASTNodeTypes.Link,
   footnote: 'FootnoteReference',
+  'footnote.reference': 'FootnoteReference',
+};
+
+// orga v4: text nodes carry a `style` property instead of distinct type names
+export const textStyleNodeTypes: Record<string, string> = {
+  bold: ASTNodeTypes.Emphasis,
+  italic: ASTNodeTypes.Emphasis,
+  code: ASTNodeTypes.Code,
+  verbatim: ASTNodeTypes.Code,
 };
 
 interface LineColumn {
@@ -34,4 +40,7 @@ export interface OrgNode {
   loc?: unknown;
   range?: readonly [number, number];
   raw?: string;
+  style?: string;
+  path?: { value: string; protocol?: string };
+  children?: OrgNode[];
 };

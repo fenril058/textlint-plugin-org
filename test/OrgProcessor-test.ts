@@ -8,7 +8,7 @@ import { TextlintKernel } from '@textlint/kernel';
 import { parse } from '../src/org-to-ast';
 import OrgPlugin from '../src/index';
 
-import { nodeTypes as Syntax } from '../src/mapping';
+import { nodeTypes as Syntax, textStyleNodeTypes } from '../src/mapping';
 
 test('parse should return AST', () => {
   const result = parse(`
@@ -107,7 +107,7 @@ This is text.
   const paragraph = result.children[0];
   const text = paragraph.children[0];
 
-  assert.equal(text.type, Syntax['text.plain']);
+  assert.equal(text.type, Syntax.text);
 });
 
 test('inline code should Code', () => {
@@ -118,7 +118,7 @@ test('inline code should Code', () => {
   const paragraph = result.children[0];
   const code = paragraph.children[0];
 
-  assert.equal(code.type, Syntax['text.code']);
+  assert.equal(code.type, textStyleNodeTypes.code);
 });
 
 test('emphasis text should Emphasis', () => {
@@ -129,7 +129,7 @@ test('emphasis text should Emphasis', () => {
   const paragraph = result.children[0];
   const emphasis = paragraph.children[0];
 
-  assert.equal(emphasis.type, Syntax['text.bold']);
+  assert.equal(emphasis.type, textStyleNodeTypes.bold);
 });
 
 test('link should Link', () => {
