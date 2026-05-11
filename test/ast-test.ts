@@ -74,3 +74,15 @@ test('inline footnote reference should produce a valid AST', () => {
   testAST(AST);
   assert.equal(isTxtAST(AST), true);
 });
+
+test('empty string should produce a valid AST', () => {
+  const AST = parse('');
+  testAST(AST);
+  assert.equal(isTxtAST(AST), true);
+});
+
+test('ordered list should produce a valid AST', () => {
+  const AST = parse('1. first\n2. second');
+  testAST(AST);
+  assert.equal(isTxtAST(AST), true);
+});

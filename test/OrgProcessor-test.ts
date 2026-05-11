@@ -7,6 +7,7 @@ import { TextlintKernel } from '@textlint/kernel';
 
 import { parse } from '../src/org-to-ast';
 import OrgPlugin from '../src/index';
+import { OrgProcessor } from '../src/OrgProcessor';
 
 import { nodeTypes as Syntax, textStyleNodeTypes } from '../src/mapping';
 
@@ -239,6 +240,67 @@ test('Str node should have correct range, loc, and raw', () => {
     start: { line: 1, column: 0 },
     end: { line: 1, column: 13 },
   });
+});
+
+// OrgProcessor unit tests ================
+
+test('availableExtensions should return [.org]', () => {
+  const processor = new OrgProcessor();
+  assert.deepEqual(processor.availableExtensions(), ['.org']);
+});
+
+test('postProcess should return messages and filePath', () => {
+  const { postProcess } = new OrgProcessor().processor('.org');
+  const messages = [{ message: 'error' }];
+  const result = postProcess(messages, '/path/to/file.org');
+  assert.deepEqual(result.messages, messages);
+  assert.equal(result.filePath, '/path/to/file.org');
+});
+
+test('postProcess should default filePath to <org> when not provided', () => {
+  const { postProcess } = new OrgProcessor().processor('.org');
+  const result = postProcess([], undefined);
+  assert.equal(result.filePath, '<org>');
+});
+
+// edge cases ================
+
+test('empty string should parse to empty Document', () => {
+  const result = parse('');
+  assert.equal(result.type, Syntax.document);
+  assert.deepEqual(result.children, []);
+});
+
+test('link without description should have correct url', () => {
+  const result = parse('[[http://example.com/]]');
+  const paragraph = result.children[0];
+  const link = paragraph.children[0];
+  assert.equal(link.type, Syntax.link);
+  assert.equal(link.url, 'http://example.com/');
+});
+
+test('ordered list should produce List and ListItem nodes', () => {
+  const result = parse('1. first\n2. second');
+  const list = result.children[0];
+  assert.equal(list.type, Syntax.list);
+  assert.equal(list.children[0].type, Syntax['list.item']);
+  assert.equal(list.children[1].type, Syntax['list.item']);
+});
+
+// Header range after section flattening ================
+
+test('Header node should have correct range and raw after section flattening', () => {
+  const result = parse('* Heading One\n\nParagraph.');
+  const header = result.children[0];
+  assert.equal(header.type, Syntax.headline);
+  assert.equal(header.raw, '* Heading One\n');
+  assert.deepEqual(header.range, [0, 14]);
+  assert.deepEqual(header.loc, {
+    start: { line: 1, column: 0 },
+    end: { line: 2, column: 0 },
+  });
+  // paragraph follows directly — no UNKNOWN section wrapper
+  assert.equal(result.children[1].type, Syntax.paragraph);
 });
 
 const lintFile = (filePath: string, options = true) => {
