@@ -45,10 +45,27 @@ test('heading should Header', () => {
 ** Heading
   `);
 
-  const section = result.children[0];
-  const header = section.children[0];
+  const header = result.children[0];
 
   assert.equal(header.type, Syntax.headline);
+});
+
+test('section should be flattened into parent', () => {
+  const result = parse(`
+* Heading 1
+
+Paragraph under heading.
+
+** Heading 2
+
+Nested paragraph.
+  `);
+
+  // section nodes are promoted: Document > [Header, Paragraph, Header, Paragraph]
+  assert.equal(result.children[0].type, Syntax.headline);
+  assert.equal(result.children[1].type, Syntax.paragraph);
+  assert.equal(result.children[2].type, Syntax.headline);
+  assert.equal(result.children[3].type, Syntax.paragraph);
 });
 
 test('begin_src should CodeBlock', () => {

@@ -12,7 +12,7 @@ export function parse(org: string): OrgNode {
     const node = n as OrgNode;
     delete node.parent;
 
-    if (node.type === 'emptyLine' || node.type === 'newline') {
+    if (node.type === 'emptyLine' || node.type === 'newline' || node.type === 'section') {
       return;
     }
 
@@ -55,11 +55,25 @@ export function parse(org: string): OrgNode {
     }
   });
 
-  // Filter emptyLine/newline nodes skipped above
+  // Filter emptyLine/newline and flatten section nodes skipped above.
+  // section wraps headline + content in orga v4 but has no TxtAST equivalent;
+  // promote its children directly into the parent.
   function stripTokens(node: OrgNode): void {
     if (node.children) {
-      node.children = node.children.filter(c => c !== undefined && c.type !== 'emptyLine' && c.type !== 'newline');
-      node.children.forEach(stripTokens);
+      const result: OrgNode[] = [];
+      for (const child of node.children) {
+        if (child === undefined || child.type === 'emptyLine' || child.type === 'newline') {
+          continue;
+        }
+        if (child.type === 'section') {
+          stripTokens(child);
+          result.push(...(child.children ?? []));
+        } else {
+          stripTokens(child);
+          result.push(child);
+        }
+      }
+      node.children = result;
     }
   }
   stripTokens(ast);
