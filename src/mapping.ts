@@ -19,6 +19,7 @@ export const textStyleNodeTypes: Record<string, string> = {
   italic: ASTNodeTypes.Emphasis,
   code: ASTNodeTypes.Code,
   verbatim: ASTNodeTypes.Code,
+  strikeThrough: ASTNodeTypes.Delete,
 };
 
 interface LineColumn {

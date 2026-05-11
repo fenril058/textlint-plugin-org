@@ -50,3 +50,27 @@ Paragraph under heading.
   testAST(AST);
   assert.equal(isTxtAST(AST), true);
 });
+
+test('document with all inline styles should produce a valid AST', () => {
+  const AST = parse('*bold* /italic/ ~code~ =verbatim= +strike+');
+  testAST(AST);
+  assert.equal(isTxtAST(AST), true);
+});
+
+test('nested list should produce a valid AST', () => {
+  const AST = parse('- item1\n  - nested\n- item2');
+  testAST(AST);
+  assert.equal(isTxtAST(AST), true);
+});
+
+test('link should produce a valid AST', () => {
+  const AST = parse('[[http://example.com/][Example Domain]]');
+  testAST(AST);
+  assert.equal(isTxtAST(AST), true);
+});
+
+test('inline footnote reference should produce a valid AST', () => {
+  const AST = parse('see [fn:1] for details');
+  testAST(AST);
+  assert.equal(isTxtAST(AST), true);
+});

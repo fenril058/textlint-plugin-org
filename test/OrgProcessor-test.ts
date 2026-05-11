@@ -149,6 +149,33 @@ test('emphasis text should Emphasis', () => {
   assert.equal(emphasis.type, textStyleNodeTypes.bold);
 });
 
+test('italic text should be Emphasis', () => {
+  const result = parse('/italic/');
+
+  const paragraph = result.children[0];
+  const emphasis = paragraph.children[0];
+
+  assert.equal(emphasis.type, textStyleNodeTypes.italic);
+});
+
+test('verbatim text should be Code', () => {
+  const result = parse('=verbatim=');
+
+  const paragraph = result.children[0];
+  const code = paragraph.children[0];
+
+  assert.equal(code.type, textStyleNodeTypes.verbatim);
+});
+
+test('strikeThrough text should be Delete', () => {
+  const result = parse('+strike+');
+
+  const paragraph = result.children[0];
+  const del = paragraph.children[0];
+
+  assert.equal(del.type, textStyleNodeTypes.strikeThrough);
+});
+
 test('link should Link', () => {
   const result = parse(`
 [[http://example.com/][Example Domain]]
@@ -161,6 +188,16 @@ test('link should Link', () => {
   assert.equal(link.url, 'http://example.com/');
 });
 
+test('inline footnote reference should be FootnoteReference', () => {
+  const result = parse('see [fn:1] for details');
+
+  const paragraph = result.children[0];
+  // children: [Str("see "), FootnoteReference, Str(" for details")]
+  const fnRef = paragraph.children[1];
+
+  assert.equal(fnRef.type, Syntax['footnote.reference']);
+});
+
 test('footnote should FootnoteReference', () => {
   const result = parse(`
 [fn:1] This is a footnote
@@ -169,6 +206,39 @@ test('footnote should FootnoteReference', () => {
   const target = result.children[0];
 
   assert.equal(target.type, Syntax.footnote);
+});
+
+test('nested list should have nested List nodes', () => {
+  const result = parse('- a\n  - b\n  - c\n- d');
+
+  const outerList = result.children[0];
+  assert.equal(outerList.type, Syntax.list);
+
+  // outer list: [ListItem("a"), List(inner), ListItem("d")]
+  assert.equal(outerList.children[0].type, Syntax['list.item']);
+  assert.equal(outerList.children[1].type, Syntax.list);
+  assert.equal(outerList.children[2].type, Syntax['list.item']);
+
+  // inner list items
+  const innerList = outerList.children[1];
+  assert.equal(innerList.children[0].type, Syntax['list.item']);
+  assert.equal(innerList.children[1].type, Syntax['list.item']);
+});
+
+test('Str node should have correct range, loc, and raw', () => {
+  const src = 'Hello, world.';
+  const result = parse(src);
+
+  const paragraph = result.children[0];
+  const str = paragraph.children[0];
+
+  assert.equal(str.type, Syntax.text);
+  assert.equal(str.raw, 'Hello, world.');
+  assert.deepEqual(str.range, [0, 13]);
+  assert.deepEqual(str.loc, {
+    start: { line: 1, column: 0 },
+    end: { line: 1, column: 13 },
+  });
 });
 
 const lintFile = (filePath: string, options = true) => {
