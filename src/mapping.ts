@@ -14,7 +14,6 @@ export const nodeTypes: Record<string, string> = {
   'footnote.reference': 'FootnoteReference',
 };
 
-// orga v4: text nodes carry a `style` property instead of distinct type names
 export const textStyleNodeTypes: Record<string, string> = {
   bold: ASTNodeTypes.Emphasis,
   italic: ASTNodeTypes.Emphasis,

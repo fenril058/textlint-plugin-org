@@ -10,16 +10,16 @@ export function parse(org: string): OrgNode {
     if (this.notLeaf) {
       delete node.parent;
 
-      // orga v4 emits emptyLine/newline tokens throughout the tree; strip them
+      // orga v4 emits emptyLine/newline tokens; skip them here and filter after traversal.
+      // traverse.remove() is unreliable when multiple consecutive elements are removed
+      // (it adjusts the array index by only one step, causing it to miss the last element).
       if (node.type === 'emptyLine' || node.type === 'newline') {
-        this.remove();
         return;
       }
 
       // AST node has type and position
       if (node.type && node.position) {
         if (node.type === 'text') {
-          // orga v4: inline text uses a single 'text' type with an optional style
           node.type = (node.style !== undefined ? textStyleNodeTypes[node.style] : undefined) ?? nodeTypes.text;
         } else {
           node.type = nodeTypes[node.type];
@@ -61,5 +61,15 @@ export function parse(org: string): OrgNode {
       }
     }
   });
+
+  // Filter emptyLine/newline nodes that were skipped above
+  function stripTokens(node: OrgNode): void {
+    if (node.children) {
+      node.children = node.children.filter(c => c !== undefined && c.type !== 'emptyLine' && c.type !== 'newline');
+      node.children.forEach(stripTokens);
+    }
+  }
+  stripTokens(ast);
+
   return ast;
 }
