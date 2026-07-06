@@ -7,7 +7,9 @@ export class OrgProcessor {
   extensions: Array<string>;
   constructor(config = {}) {
     this.config = config;
-    this.extensions = this.config.extensions ? this.config.extensions : [];
+    this.extensions = Array.isArray(this.config.extensions)
+      ? this.config.extensions
+      : [];
   }
 
   availableExtensions() {

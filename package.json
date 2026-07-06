@@ -23,33 +23,32 @@
     "scripts": {
         "build": "tsc -b && tsc -b tsconfig.json",
         "prepublish": "npm run --if-present build",
-        "test": "mocha \"test/**/*.{js,ts}\"",
+        "test": "tsx --test",
         "watch": "tsc -b --watch",
         "lint": "npx eslint src/**/*.ts"
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^12.2.2",
-        "@types/date-fns": "^2.6.0",
-        "@types/node": "^22.10.3",
-        "orga": "2.4.9",
+        "@textlint/ast-node-types": "^15.6.0",
+        "orga": "4.7.1",
         "structured-source": "^4.0.0",
-        "traverse": "^0.6.6"
+        "unist-util-visit": "^5.1.0"
     },
     "devDependencies": {
-        "@textlint/ast-tester": "^14.0.3",
-        "@textlint/kernel": "^14.0.3",
-        "@types/jest": "^29.0.0",
-        "@types/power-assert": "^1.5.3",
-        "@types/traverse": "^0.6.32",
-        "@typescript-eslint/eslint-plugin": "^5.2.0",
-        "@typescript-eslint/parser": "^5.2.0",
-        "eslint": "^8.1.0",
-        "eslint-plugin-import": "^2.23.4",
-        "mocha": "^11.0.1",
-        "power-assert": "^1.6.1",
+        "@eslint/js": "^10.0.1",
+        "@textlint/ast-tester": "^15.6.0",
+        "@textlint/kernel": "^15.6.0",
+        "@types/node": "^25.6.2",
+        "@typescript-eslint/eslint-plugin": "^8.59.2",
+        "@typescript-eslint/parser": "^8.59.2",
+        "eslint": "^10.3.0",
+        "eslint-import-resolver-typescript": "^4.4.4",
+        "eslint-plugin-import-x": "^4.16.2",
+        "globals": "^17.6.0",
         "textlint-rule-max-comma": "^4.0.0",
-        "ts-node": "^10.0.0",
+        "ts-node": "^10.9.2",
         "ts-node-test-register": "^10.0.0",
-        "typescript": "^5.0.2"
+        "tsx": "^4.21.0",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.59.2"
     }
 }
