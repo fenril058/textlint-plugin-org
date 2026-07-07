@@ -18,7 +18,7 @@ What is textlint plugin? Please see https://github.com/textlint/textlint/blob/ma
 docker run -v "$(pwd)":/work \
            --rm -it ghcr.io/fenril058/textlint-plugin-org \
            textlint \
-           --plugin org \
+           --plugin @fenril058/textlint-plugin-org \
            --rule textlint-rule-preset-ja-technical-writing \
            *.org
 ```
@@ -36,7 +36,7 @@ Via `.textlintrc`(Recommended)
 ```json
 {
     "plugins": [
-        "org"
+        "@fenril058/textlint-plugin-org"
     ]
 }
 ```
