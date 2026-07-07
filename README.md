@@ -15,13 +15,12 @@ What is textlint plugin? Please see https://github.com/textlint/textlint/blob/ma
 ## Try run by Docker
 
 ```shell
-$ docker run -v "$(pwd)":/work \
-             -w /work \
-             --rm -it ghcr.io/fenril058/textlint-plugin-org \
-             textlint \
-             --plugin org \
-             --rule textlint-rule-preset-ja-technical-writing \
-             *.org
+docker run -v "$(pwd)":/work \
+           --rm -it ghcr.io/fenril058/textlint-plugin-org \
+           textlint \
+           --plugin org \
+           --rule textlint-rule-preset-ja-technical-writing \
+           *.org
 ```
 
 ## Install
@@ -56,19 +55,19 @@ $ textlint --plugin org test.org
 ## Test
 
 ```sh
-npm test
+pnpm test
 ```
 
 ## Lint
 
 ```sh
-npm run lint
+pnpm run lint
 ```
 
 ## Release
 
 ```sh
-npm version patch
+pnpm version patch
 git push origin main --follow-tags
-npm publish
+pnpm publish
 ```
