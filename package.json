@@ -1,17 +1,23 @@
 {
-    "name": "textlint-plugin-org",
-    "version": "0.3.5",
-    "description": "Textlint plugin for Org mode",
+    "name": "@fenril058/textlint-plugin-org",
+    "version": "0.4.0",
+    "description": "Maintained fork of textlint-plugin-org for Org mode",
     "repository": {
         "type": "git",
-        "url": "git@github.com:kijimaD/textlint-plugin-org.git"
+        "url": "git+https://github.com/fenril058/textlint-plugin-org.git"
     },
     "author": "Kijima Daigo",
+    "contributors": [
+        "ril"
+    ],
     "license": "GPLv3",
     "bugs": {
-        "url": "https://github.com/kijimaD/textlint-plugin-org/issues"
+        "url": "https://github.com/fenril058/textlint-plugin-org/issues"
     },
-    "homepage": "https://github.com/kijimaD/textlint-plugin-org#readme",
+    "homepage": "https://github.com/fenril058/textlint-plugin-org#readme",
+    "publishConfig": {
+        "access": "public"
+    },
     "main": "lib/index.js",
     "files": [
         "lib",
@@ -22,7 +28,7 @@
     },
     "scripts": {
         "build": "tsc -b && tsc -b tsconfig.json",
-        "prepublish": "npm run --if-present build",
+        "prepublishOnly": "npm run build",
         "test": "tsx --test",
         "watch": "tsc -b --watch",
         "lint": "npx eslint src/**/*.ts"
