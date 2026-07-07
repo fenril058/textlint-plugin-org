@@ -37,7 +37,7 @@
         "@eslint/js": "^10.0.1",
         "@textlint/ast-tester": "^15.6.0",
         "@textlint/kernel": "^15.6.0",
-        "@types/node": "^25.6.2",
+        "@types/node": "^26.0.1",
         "@typescript-eslint/eslint-plugin": "^8.59.2",
         "@typescript-eslint/parser": "^8.59.2",
         "eslint": "^10.3.0",
