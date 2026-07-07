@@ -3,29 +3,41 @@ name: Image
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
+
+permissions: {}
 
 jobs:
   tag:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     outputs:
       git-tag: ${{ steps.git-tag.outputs.git-tag }}
+
     steps:
       - name: Check out
-        uses: actions/checkout@v3
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
-      - name: Get git tag(short)
-        id: git-tag
+      - id: git-tag
         run: |
-          GIT_TAG=$(git rev-parse --short HEAD)
-          echo "::set-output name=git-tag::$GIT_TAG"
+          echo "git-tag=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
   release_image:
+    permissions:
+      contents: read
+      packages: write
     needs: tag
+
     uses: ./.github/workflows/docker.yml
+
     with:
-      image: ghcr.io/kijimad/textlint-plugin-org:${{ needs.tag.outputs.git-tag }},ghcr.io/kijimad/textlint-plugin-org:latest
+      image: |
+        ghcr.io/fenril058/textlint-plugin-org:${{ needs.tag.outputs.git-tag }}
+        ghcr.io/fenril058/textlint-plugin-org:latest
       target: run
-    secrets:
-      WRITE_PACKAGE: ${{ secrets.WRITE_PACKAGE }}
