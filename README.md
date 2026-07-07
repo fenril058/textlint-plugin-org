@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/%40fenril058%2Ftextlint-plugin-org.svg)](https://badge.fury.io/js/%40fenril058%2Ftextlint-plugin-org)
+[![npm version](https://img.shields.io/npm/v/%40fenril058%2Ftextlint-plugin-org)](https://www.npmjs.com/package/@fenril058/textlint-plugin-org)
 [![Build](https://github.com/fenril058/textlint-plugin-org/actions/workflows/build.yml/badge.svg)](https://github.com/fenril058/textlint-plugin-org/actions/workflows/build.yml)
 [![test](https://github.com/fenril058/textlint-plugin-org/actions/workflows/test.yml/badge.svg)](https://github.com/fenril058/textlint-plugin-org/actions/workflows/test.yml)
 [![lint](https://github.com/fenril058/textlint-plugin-org/actions/workflows/lint.yml/badge.svg)](https://github.com/fenril058/textlint-plugin-org/actions/workflows/lint.yml)
