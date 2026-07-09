@@ -1,6 +1,6 @@
 {
     "name": "@fenril058/textlint-plugin-org",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "description": "Maintained fork of textlint-plugin-org for Org mode",
     "repository": {
         "type": "git",
