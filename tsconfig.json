@@ -16,8 +16,7 @@
     "resolveJsonModule": true   // for compatibility
   },
   "include": [
-    "src/**/*.ts",
-    "eslint.config.mjs"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
