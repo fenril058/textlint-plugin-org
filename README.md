@@ -35,16 +35,13 @@ Via `.textlintrc`(Recommended)
 
 ```json
 {
-    "plugins": [
-        "@fenril058/textlint-plugin-org"
-    ]
+  "plugins": ["@fenril058/textlint-plugin-org"]
 }
 ```
 
 ```sh
 textlint test.org
 ```
-
 
 Via CLI
 
@@ -62,6 +59,12 @@ pnpm test
 
 ```sh
 pnpm run lint
+```
+
+## Format
+
+```sh
+pnpm run format
 ```
 
 ## Release

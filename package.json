@@ -1,55 +1,58 @@
 {
-    "name": "@fenril058/textlint-plugin-org",
-    "version": "0.4.3",
-    "description": "Maintained fork of textlint-plugin-org for Org mode",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/fenril058/textlint-plugin-org.git"
-    },
-    "author": "Kijima Daigo",
-    "contributors": [
-        "ril"
-    ],
-    "license": "GPLv3",
-    "bugs": {
-        "url": "https://github.com/fenril058/textlint-plugin-org/issues"
-    },
-    "homepage": "https://github.com/fenril058/textlint-plugin-org#readme",
-    "publishConfig": {
-        "access": "public"
-    },
-    "main": "lib/index.js",
-    "files": [
-        "lib",
-        "src"
-    ],
-    "directories": {
-        "test": "test"
-    },
-    "packageManager": "pnpm@11.10.0",
-    "scripts": {
-        "build": "tsc -b && tsc -b tsconfig.json",
-        "prepublishOnly": "pnpm run build",
-        "test": "tsx --test",
-        "watch": "tsc -b --watch",
-        "lint": "oxlint src"
-    },
-    "dependencies": {
-        "@textlint/ast-node-types": "^15.7.1",
-        "orga": "4.7.1",
-        "structured-source": "^4.0.0",
-        "unist-util-visit": "^5.1.0"
-    },
-    "devDependencies": {
-        "@textlint/ast-tester": "^15.7.1",
-        "@textlint/kernel": "^15.7.1",
-        "@textlint/types": "^15.7.1",
-        "@types/node": "^26.0.1",
-        "@types/unist": "^3.0.3",
-        "oxlint": "1.73.0",
-        "oxlint-tsgolint": "^0.24.0",
-        "textlint-rule-max-comma": "^4.0.0",
-        "tsx": "^4.22.4",
-        "typescript": "^7.0.2"
-    }
+  "name": "@fenril058/textlint-plugin-org",
+  "version": "0.4.3",
+  "description": "Maintained fork of textlint-plugin-org for Org mode",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fenril058/textlint-plugin-org.git"
+  },
+  "author": "Kijima Daigo",
+  "contributors": [
+    "ril"
+  ],
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/fenril058/textlint-plugin-org/issues"
+  },
+  "homepage": "https://github.com/fenril058/textlint-plugin-org#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "packageManager": "pnpm@11.10.0",
+  "scripts": {
+    "build": "tsc -b && tsc -b tsconfig.json",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "prepublishOnly": "pnpm run build",
+    "test": "tsx --test",
+    "watch": "tsc -b --watch",
+    "lint": "oxlint src && pnpm run format:check"
+  },
+  "dependencies": {
+    "@textlint/ast-node-types": "^15.7.1",
+    "orga": "4.7.1",
+    "structured-source": "^4.0.0",
+    "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "@textlint/ast-tester": "^15.7.1",
+    "@textlint/kernel": "^15.7.1",
+    "@textlint/types": "^15.7.1",
+    "@types/node": "^26.0.1",
+    "@types/unist": "^3.0.3",
+    "oxfmt": "0.59.0",
+    "oxlint": "1.73.0",
+    "oxlint-tsgolint": "^0.24.0",
+    "textlint-rule-max-comma": "^4.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^7.0.2"
+  }
 }

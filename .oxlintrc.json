@@ -1,8 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "typescript"
-  ],
+  "plugins": ["typescript"],
   "categories": {
     "correctness": "off"
   },
@@ -13,11 +11,7 @@
   "env": {
     "builtin": true
   },
-  "ignorePatterns": [
-    ".git",
-    "node_modules/",
-    "dist/"
-  ],
+  "ignorePatterns": [".git", "node_modules/", "dist/"],
   "rules": {
     "constructor-super": "error",
     "for-direction": "error",
@@ -144,12 +138,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.cts"
-      ],
+      "files": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "rules": {
         "constructor-super": "off",
         "getter-return": "off",
@@ -174,9 +163,7 @@
       }
     },
     {
-      "files": [
-        "**/*.{ts,mts,cts,tsx}"
-      ],
+      "files": ["**/*.{ts,mts,cts,tsx}"],
       "rules": {
         "import/namespace": "error",
         "import/default": "error",
@@ -188,15 +175,10 @@
         "es2026": true,
         "node": true
       },
-      "plugins": [
-        "import"
-      ]
+      "plugins": ["import"]
     },
     {
-      "files": [
-        "**/*.js",
-        "**/*.mjs"
-      ],
+      "files": ["**/*.js", "**/*.mjs"],
       "rules": {
         "typescript/await-thenable": "off",
         "typescript/consistent-return": "off",

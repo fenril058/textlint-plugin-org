@@ -3,7 +3,7 @@
     "target": "es2023",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": [ "ES2023" ],
+    "lib": ["ES2023"],
     "outDir": "lib",
     "rootDir": "src",
     "esModuleInterop": true,
@@ -13,14 +13,8 @@
     "skipLibCheck": true,
     "noImplicitAny": true,
 
-    "resolveJsonModule": true   // for compatibility
+    "resolveJsonModule": true // for compatibility
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "lib"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "lib"]
 }

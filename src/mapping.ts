@@ -4,14 +4,14 @@ export const nodeTypes: Record<string, string> = {
   document: ASTNodeTypes.Document,
   paragraph: ASTNodeTypes.Paragraph,
   list: ASTNodeTypes.List,
-  'list.item': ASTNodeTypes.ListItem,
+  "list.item": ASTNodeTypes.ListItem,
   headline: ASTNodeTypes.Header,
   block: ASTNodeTypes.CodeBlock,
   hr: ASTNodeTypes.HorizontalRule,
   text: ASTNodeTypes.Str,
   link: ASTNodeTypes.Link,
-  footnote: 'FootnoteReference',
-  'footnote.reference': 'FootnoteReference',
+  footnote: "FootnoteReference",
+  "footnote.reference": "FootnoteReference",
 };
 
 export const textStyleNodeTypes: Record<string, string> = {
@@ -43,4 +43,4 @@ export interface OrgNode {
   style?: string;
   path?: { value: string; protocol?: string };
   children?: OrgNode[];
-};
+}

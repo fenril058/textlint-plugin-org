@@ -1,8 +1,8 @@
-import { parse as orga } from 'orga';
-import { visit } from 'unist-util-visit';
-import { StructuredSource } from 'structured-source';
-import { nodeTypes, textStyleNodeTypes, OrgNode } from './mapping.js';
-import type { Node } from 'unist';
+import { parse as orga } from "orga";
+import { visit } from "unist-util-visit";
+import { StructuredSource } from "structured-source";
+import { nodeTypes, textStyleNodeTypes, OrgNode } from "./mapping.js";
+import type { Node } from "unist";
 
 export function parse(org: string): OrgNode {
   const ast = orga(org);
@@ -12,23 +12,24 @@ export function parse(org: string): OrgNode {
     const node = n as OrgNode;
     delete node.parent;
 
-    if (node.type === 'emptyLine' || node.type === 'newline' || node.type === 'section') {
+    if (node.type === "emptyLine" || node.type === "newline" || node.type === "section") {
       return;
     }
 
     if (node.type && node.position) {
-      if (node.type === 'text') {
-        node.type = (node.style !== undefined ? textStyleNodeTypes[node.style] : undefined) ?? nodeTypes.text;
+      if (node.type === "text") {
+        node.type =
+          (node.style !== undefined ? textStyleNodeTypes[node.style] : undefined) ?? nodeTypes.text;
       } else {
         node.type = nodeTypes[node.type];
       }
     }
 
-    if (typeof node.type === 'undefined' && node.position !== undefined) {
-      node.type = 'UNKNOWN';
+    if (typeof node.type === "undefined" && node.position !== undefined) {
+      node.type = "UNKNOWN";
     }
 
-    if (typeof node.position === 'object') {
+    if (typeof node.position === "object") {
       const position = node.position;
 
       // TxtNode's line start with 1
@@ -41,7 +42,7 @@ export function parse(org: string): OrgNode {
       node.loc = positionCompensated;
       node.range = range;
       node.raw = org.slice(range[0], range[1]);
-      Object.defineProperty(node, 'position', {
+      Object.defineProperty(node, "position", {
         enumerable: false,
         configurable: false,
         writable: false,
@@ -50,7 +51,7 @@ export function parse(org: string): OrgNode {
     }
 
     // map `url` to Link node (orga v4: URL is in node.path.value)
-    if (node.type === 'Link' && node.path !== undefined) {
+    if (node.type === "Link" && node.path !== undefined) {
       node.url = node.path.value;
     }
   });
@@ -62,10 +63,10 @@ export function parse(org: string): OrgNode {
     if (node.children) {
       const result: OrgNode[] = [];
       for (const child of node.children) {
-        if (child === undefined || child.type === 'emptyLine' || child.type === 'newline') {
+        if (child === undefined || child.type === "emptyLine" || child.type === "newline") {
           continue;
         }
-        if (child.type === 'section') {
+        if (child.type === "section") {
           stripTokens(child);
           result.push(...(child.children ?? []));
         } else {

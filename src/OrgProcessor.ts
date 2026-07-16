@@ -7,15 +7,11 @@ export class OrgProcessor {
   extensions: Array<string>;
   constructor(config = {}) {
     this.config = config;
-    this.extensions = Array.isArray(this.config.extensions)
-      ? this.config.extensions
-      : [];
+    this.extensions = Array.isArray(this.config.extensions) ? this.config.extensions : [];
   }
 
   availableExtensions() {
-    return [
-      '.org',
-    ];
+    return [".org"];
   }
 
   processor(_ext: string) {
@@ -26,7 +22,7 @@ export class OrgProcessor {
       postProcess(messages: any[], filePath?: string) {
         return {
           messages,
-          filePath: filePath ? filePath : '<org>',
+          filePath: filePath ? filePath : "<org>",
         };
       },
     };
