@@ -3,6 +3,7 @@
 [![test](https://github.com/fenril058/textlint-plugin-org/actions/workflows/test.yml/badge.svg)](https://github.com/fenril058/textlint-plugin-org/actions/workflows/test.yml)
 [![lint](https://github.com/fenril058/textlint-plugin-org/actions/workflows/lint.yml/badge.svg)](https://github.com/fenril058/textlint-plugin-org/actions/workflows/lint.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Deepwiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/fenril058/textlint-plugin-org)
 
 # @fenril058/textlint-plugin-org
 
