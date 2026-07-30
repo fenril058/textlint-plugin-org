@@ -17,13 +17,11 @@ updates:
       type-definitions:
         patterns:
           - "@types/*"
-      linting-tools:
+      oxc-tools:
         patterns:
-          - "eslint"
-          - "eslint-*"
-          - "@eslint/*"
-          - "@typescript-eslint/*"
-          - "globals"
+          - "oxfmt"
+          - "oxlint"
+          - "oxlint-*"
     cooldown:
       default-days: 7
       semver-major-days: 7
