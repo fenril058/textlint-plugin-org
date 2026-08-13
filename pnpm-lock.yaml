@@ -50,7 +50,7 @@ importers:
         version: 4.0.0
       tsx:
         specifier: ^4.22.4
-        version: 4.23.8
+        version: 4.23.9
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -780,8 +780,8 @@ packages:
   trough@1.0.5:
     resolution: {integrity: sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==}
 
-  tsx@4.23.8:
-    resolution: {integrity: sha512-8W675THjbzfFmLOQzjDBIBna+WjqMGIxmSZ1mMc1+o9qoVsEuAgQu5j5ueLhau8inOkDu9OslVg0FmfBs1RIHw==}
+  tsx@4.23.9:
+    resolution: {integrity: sha512-6q8uTORRGauQVjqMQnKUucLFoeXZAfw6zKvG35GLbdKWbLdeOtZ3H4mhyA5mxuUd2o2cRTskhj59nLLQseUvUw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -1330,7 +1330,7 @@ snapshots:
 
   trough@1.0.5: {}
 
-  tsx@4.23.8:
+  tsx@4.23.9:
     dependencies:
       esbuild: 0.28.2
     optionalDependencies:
