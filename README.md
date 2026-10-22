@@ -7,7 +7,7 @@
 
 # @fenril058/textlint-plugin-org
 
-A maintained fork of **textlint-plugin-org** with support for **orga v4** and modernized tooling.
+A maintained fork of **textlint-plugin-org** with support for **orga v5** and modernized tooling.
 
 Add Org mode support for [textlint](https://github.com/textlint/textlint "textlint").
 
