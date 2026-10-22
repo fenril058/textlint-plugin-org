@@ -1,6 +1,6 @@
 {
   "name": "@fenril058/textlint-plugin-org",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Maintained fork of textlint-plugin-org for Org mode",
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^15.7.1",
-    "orga": "5.0.0",
+    "orga": "4.7.1",
     "structured-source": "^4.0.0",
     "unist-util-visit": "^5.1.0"
   },
