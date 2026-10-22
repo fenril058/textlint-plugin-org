@@ -16,6 +16,8 @@ export function parse(org: string): OrgNode {
       return;
     }
 
+    const isPlanningTimestamp = node.type === "planning.timestamp";
+
     if (node.type && node.position) {
       if (node.type === "text") {
         node.type =
@@ -42,6 +44,10 @@ export function parse(org: string): OrgNode {
       node.loc = positionCompensated;
       node.range = range;
       node.raw = org.slice(range[0], range[1]);
+      if (isPlanningTimestamp) {
+        // TxtAST values are strings; parsed metadata stays on the planning node.
+        node.value = node.raw;
+      }
       Object.defineProperty(node, "position", {
         enumerable: false,
         configurable: false,
