@@ -37,15 +37,15 @@
     "lint": "oxlint src && pnpm run format:check"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^15.7.1",
+    "@textlint/ast-node-types": "^16.1.1",
     "orga": "5.0.0",
     "structured-source": "^4.0.0",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@textlint/ast-tester": "^15.7.1",
-    "@textlint/kernel": "^15.7.1",
-    "@textlint/types": "^15.7.1",
+    "@textlint/ast-tester": "^16.1.1",
+    "@textlint/kernel": "^16.1.1",
+    "@textlint/types": "^16.1.1",
     "@types/node": "^26.0.1",
     "@types/unist": "^3.0.3",
     "oxfmt": "0.79.0",
